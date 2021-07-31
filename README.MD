@@ -1,0 +1,1 @@
+Google Sheets, E-Tablolar için yazılmış özel script.
