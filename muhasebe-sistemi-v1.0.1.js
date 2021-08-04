@@ -131,48 +131,48 @@ function toplamUSDTHesapla(islemRange, coinRange, islemDurumuRange) {
   return toplamUsdt;
 }
 
-function toplamGirdiCiktiTL(islemRange, miktar) {
+function toplamGirdiCiktiTL(islemRange, miktar,islemDurumuRange) {
   var toplamTL = 0;
   for (let i = 0; i < islemRange.length; i++) {
-    if (islemRange[i][0] === "Girdi") {
+    if (islemRange[i][0] === "Girdi" && islemDurumuRange[i][0]) {
       toplamTL += miktar[i][0];
-    } else if (islemRange[i][0] === "Çıktı") {
+    } else if (islemRange[i][0] === "Çıktı" && islemDurumuRange[i][0]) {
       toplamTL -= miktar[i][0];
     }
   }
   return toplamTL;
 }
 
-function toplamGirdiCiktiDolar(islemRange, miktar) {
+function toplamGirdiCiktiDolar(islemRange, miktar,islemDurumuRange) {
   var toplamDolar = 0;
   for (let i = 0; i < islemRange.length; i++) {
-    if (islemRange[i][0] === "Girdi") {
+    if (islemRange[i][0] === "Girdi" && islemDurumuRange[i][0]) {
       toplamDolar += miktar[i][0];
-    } else if (islemRange[i][0] === "Çıktı") {
+    } else if (islemRange[i][0] === "Çıktı" && islemDurumuRange[i][0]) {
       toplamDolar -= miktar[i][0];
     }
   }
   return toplamDolar;
 }
 
-function toplamGirdiCiktiEuro(islemRange, miktar) {
+function toplamGirdiCiktiEuro(islemRange, miktar,islemDurumuRange) {
   var toplamEuro = 0;
   for (let i = 0; i < islemRange.length; i++) {
-    if (islemRange[i][0] === "Girdi") {
+    if (islemRange[i][0] === "Girdi" && islemDurumuRange[i][0]) {
       toplamEuro += miktar[i][0];
-    } else if (islemRange[i][0] === "Çıktı") {
+    } else if (islemRange[i][0] === "Çıktı" && islemDurumuRange[i][0]) {
       toplamEuro -= miktar[i][0];
     }
   }
   return toplamEuro;
 }
 
-function toplamGirdiCiktiSterlin(islemRange, miktar) {
+function toplamGirdiCiktiSterlin(islemRange, miktar,islemDurumuRange) {
   var toplamSterlin = 0;
   for (let i = 0; i < islemRange.length; i++) {
-    if (islemRange[i][0] === "Girdi") {
+    if (islemRange[i][0] === "Girdi" && islemDurumuRange[i][0]) {
       toplamSterlin += miktar[i][0];
-    } else if (islemRange[i][0] === "Çıktı") {
+    } else if (islemRange[i][0] === "Çıktı" && islemDurumuRange[i][0]) {
       toplamSterlin -= miktar[i][0];
     }
   }
