@@ -131,6 +131,7 @@ function toplamUSDTHesapla(islemRange, coinRange, islemDurumuRange) {
   return toplamUsdt;
 }
 
+/* [LEGACY] 
 function toplamGirdiCiktiTL(islemRange, miktar,islemDurumuRange) {
   var toplamTL = 0;
   for (let i = 0; i < islemRange.length; i++) {
@@ -178,3 +179,124 @@ function toplamGirdiCiktiSterlin(islemRange, miktar,islemDurumuRange) {
   }
   return toplamSterlin;
 }
+ [LEGACY] */
+
+function girdiCiktiBelirle(detayRange) {
+  let kucukHarfRange = []
+  for (let i=0;i < detayRange.length;i++){
+    kucukHarfRange.push(detayRange[i][0].toLowerCase());
+  }
+  for (let i = 0; i < detayRange.length; i++){
+    switch (kucukHarfRange[i]) {
+      case "sermaye aktarımı":
+      case "virman":
+      case "kâr":
+      case "exchange":
+      case "coin bozma":
+      case "borç alma":
+      case "komisyon geliri":
+      case "borç tahsilatı":
+      case "kur geliri":
+      case "yanlış işlem":
+      case "o/n geliri":
+      case "deposit in":
+      case "bankadan çekilen":
+      case "bankaya yatırılan":
+      case "kasa fazlası":
+      case "coin bozma çekim":
+      case "müşteri gönderimi":
+      case "repo geliri":
+      case "hesapta kalan":
+      case "btcturkten bankaya":
+      case "borç tahsilat":
+        return "Girdi"
+      
+      case "maaş":
+      case "kira":
+      case "elektrik":
+      case "avans":
+      case "vergi":
+      case "stopaj":
+      case "bsi":
+      case "su":
+      case "teknik gider":
+      case "market":
+      case "diğer":
+      case "banka komisyon":
+      case "aracı komisyon":
+      //case "kar":
+      case "borç ödeme":
+      case "bağış/yardım":
+      case "resmi gider":
+      case "telefon":
+      case "borç verme":
+      case "kur gideri":
+      case "lefkoşa şube":
+      case "promosyon&reklam":
+      case "personel":
+      case "tamir tadilat bakım":
+      case "kırtasiye":
+      case "hisse paylaşımı":
+      case "sigorta/kasko":
+      case "benzin":
+      case "deposit out":
+      case "demirbaş":
+      case "mining":
+      case "letbit":
+      case "güvenlik hizmetleri":
+      case "para çekme":
+      case "müşteri ödemesi":
+        return "Çıktı"
+    }
+  }
+}
+
+function girdiCiktiTlHesapla(kurRange,miktarRange,islemRange,islemDurumuRange){
+  var toplam = 0;
+  for(let i=0 ;i < kurRange.length;i++){
+    if(kurRange[i][0]==="TL" && islemRange[i][0]==="Girdi" && islemDurumuRange[i][0]){
+      toplam += miktarRange[i][0];
+    }else if(kurRange[i][0]==="TL" && islemRange[i][0]==="Çıktı" && islemDurumuRange[i][0]){
+      toplam -= miktarRange[i][0];
+    }
+  }
+  return toplam;
+}
+
+function girdiCiktiDolarHesapla(kurRange,miktarRange,islemRange,islemDurumuRange){
+  var toplam = 0;
+  for(let i = 0 ; i < kurRange.length; i++){
+    if(kurRange[i][0]==="Dolar" && islemRange[i][0]==="Girdi" && islemDurumuRange[i][0]){
+      toplam +=miktarRange[i][0];
+    }else if(kurRange[i][0]==="Dolar" && islemRange[i][0]==="Çıktı" && islemDurumuRange[i][0]){
+      toplam -= miktarRange[i][0];
+    }
+  }
+  return toplam;
+}
+
+function girdiCiktiEuroHesapla(kurRange,miktarRange,islemRange,islemDurumuRange){
+  var toplam = 0;
+  for(let i = 0; i < kurRange.length;i++){
+    if(kurRange[i][0]==="Euro" && islemRange[i][0]==="Girdi" && islemDurumuRange[i][0]){
+      toplam +=miktarRange[i][0];
+    }else if(kurRange[i][0]==="Euro" && islemRange[i][0]==="Çıktı" && islemDurumuRange[i][0]){
+      toplam -=miktarRange[i][0];
+    }
+  }
+  return toplam;  
+}
+
+function girdiCiktiSterlinHesapla(kurRange,miktarRange,islemRange,islemDurumuRange){
+  var toplam = 0;
+  for(let i = 0 ; i < kurRange.length;i++){
+    if(kurRange[i][0]==="Sterlin" && islemRange[i][0]==="Girdi" && islemDurumuRange[i][0]){
+      toplam+=miktarRange[i][0];
+    }else if(kurRange[i][0]==="Sterlin" && islemRange[i][0]==="Çıktı" && islemDurumuRange[i][0]){
+      toplam-=miktarRange[i][0];
+    }
+  }
+  return toplam;
+}
+var ss = SpreadsheetApp.getActiveSheet();
+girdiCiktiBelirle(ss.getRange('Sayfa4!C6').getValues());
