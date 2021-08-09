@@ -211,7 +211,9 @@ function merkezGirdiCiktiSterlinHesapla(
       if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
         if (kur[i][0] === "Sterlin") {
           toplam += miktar[i][0];
-        } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Sterlin") {
           toplam -= miktar[i][0];
         }
       }
@@ -309,7 +311,9 @@ function lefkosaGirdiCiktiSterlinHesapla(
       if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
         if (kur[i][0] === "Sterlin") {
           toplam += miktar[i][0];
-        } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Sterlin") {
           toplam -= miktar[i][0];
         }
       }
@@ -330,4 +334,4 @@ function karHesapla(karRange, islemDurumu) {
 }
 
 //var ss = SpreadsheetApp.getActiveSheet();
-//girdiCiktiHesaplaGirne(ss.getRange('B6:B8').getValues(),ss.getRange('C6').getValues(),ss.getRange('F6:F8').getValues(),ss.getRange('G6').getValues(),ss.getRange('H6').getValues(),ss.getRange('I2').getValues())
+//karHesapla(ss.getRange('Q6:Q').getValues(),ss.getRange(''))
