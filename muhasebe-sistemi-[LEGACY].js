@@ -304,3 +304,539 @@ girdiCiktiBelirle(ss.getRange('Sayfa4!C6').getValues());
     sheet.getRange(4, 9).setValue(sheet.getRange(r, 2).getValue());
   }
   
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Şube spesifik alış-satış sistemi (Placeholder system) //
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+//GLOBALS
+//-----------------------------
+//var SpreadsheetID = "1732Jr_hHa_4pbWRGp6YcVSVxKbiS1mUTmFUW_904DGE"; //burayı pushlamadan önce sil.
+//var SheetName = "";
+//var ss;
+//var sheet;
+
+/*function onEdit(e) {
+  var simdi = new Date();
+  switch (simdi.getMonth()) {
+    case 0:
+      SheetName = "OCAK";
+      break;
+    case 1:
+      SheetName = "ŞUBAT";
+      break;
+    case 2:
+      SheetName = "MART";
+      break;
+    case 3:
+      SheetName = "NİSAN";
+      break;
+    case 4:
+      SheetName = "MAYIS";
+      break;
+    case 5:
+      SheetName = "HAZİRAN";
+      break;
+    case 6:
+      SheetName = "TEMMUZ";
+      break;
+    case 7:
+      SheetName = "AĞUSTOS";
+      break;
+    case 8:
+      SheetName = "EYLÜL";
+      break;
+    case 9:
+      SheetName = "EKİM";
+      break;
+    case 10:
+      SheetName = "KASIM";
+      break;
+    case 11:
+      SheetName = "ARALIK";
+      break;
+  }
+  ss = SpreadsheetApp.openById(SpreadsheetID);
+  sheet = ss.getSheetByName(SheetName);
+}*/
+
+function onLoad() {
+  var simdi = new Date();
+  switch (simdi.getMonth()) {
+    case 0:
+      SheetName = "OCAK";
+      break;
+    case 1:
+      SheetName = "ŞUBAT";
+      break;
+    case 2:
+      SheetName = "MART";
+      break;
+    case 3:
+      SheetName = "NİSAN";
+      break;
+    case 4:
+      SheetName = "MAYIS";
+      break;
+    case 5:
+      SheetName = "HAZİRAN";
+      break;
+    case 6:
+      SheetName = "TEMMUZ";
+      break;
+    case 7:
+      SheetName = "AĞUSTOS";
+      break;
+    case 8:
+      SheetName = "EYLÜL";
+      break;
+    case 9:
+      SheetName = "EKİM";
+      break;
+    case 10:
+      SheetName = "KASIM";
+      break;
+    case 11:
+      SheetName = "ARALIK";
+      break;
+  }
+}
+
+//--------------------------------------------------------------
+// Gets the last row number based on a selected column range values
+// @param {array} range : takes a 2d array of a single column's values
+// @returns {number} : the last row number with a value.
+//--------------------------------------------------------------
+
+/* Merkez */
+
+/*
+function coinIslemMerkezTl() {
+  var ss = SpreadsheetApp.openById(SpreadsheetID);
+  var sheet = ss.getSheetByName(SheetName);
+
+  var kontrolEdilecekSutun = sheet.getRange('A:A').getValues();
+
+  var sonSatır = getLastSpecialRow(kontrolEdilecekSutun);
+
+  Logger.log(sonSatır);
+
+}
+*/
+
+function coinIslemMerkezTl(){
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sheet = ss.getSheetByName(SheetName);
+  var SheetName="";
+  onLoad();
+  var kontrolEdilecekSutun = sheet.getRange('A:A').getValues();
+
+  var sonSatir = getLastSpecialRow(kontrolEdilecekSutun);
+
+  Logger.log(sonSatir);
+  
+}
+
+function deneme() {
+  var ss = SpreadsheetApp.openById(SpreadsheetID);
+  var sheet = ss.getSheetByName(SheetName);
+
+  // Select the column we will check for the first blank cell
+  var columnToCheck = sheet.getRange("A:A").getValues();
+
+  // Get the last row based on the data range of a single column.
+  var lastRow = getLastSpecialRow(columnToCheck);
+  //Test
+  // Logger.log(lastRow);
+
+  var dataRange = sheet.getRange(1, 1, lastRow, sheet.getLastColumn());
+  //Logger.log(dataRange)
+  var dataValues = dataRange.getValues();
+
+  //Test
+  // Logger.log(dataValues);
+}
+
+function getLastSpecialRow(range) {
+  var rowNum = 0;
+  var blank = false;
+  for (var row = 0; row < range.length; row++) {
+    if (range[row][0] === "" && !blank) {
+      rowNum = row;
+      blank = true;
+    } else if (range[row][0] !== "") {
+      blank = false;
+    }
+  }
+  return rowNum;
+}
+/*
+function coinIslemMerkezTl(
+  tarih,
+  tarihRange,
+  sube,
+  islem,
+  miktar,
+  islemDurumu
+) {
+  var toplam = 0;
+
+  var kontrolEdilecekSutun = sheet.getRange("A:A").getValues();
+
+  var sonSatir = getLastSpecialRow(kontrolEdilecekSutun);
+
+  var islemSayisi = sonSatir - 9;
+
+  for (let i = 0; i < islemSayisi; i++) {
+    if (
+      islemDurumu[i][0] &&
+      ((tarih === tarihRange[i][0]) === sube[i][0]) === "Merkez"
+    ) {
+      if (islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+
+  // for (let i = 0; i < tarihRange.length; i++){
+  //   if (islemDurumu[i][0] && sube[i][0]==="Merkez" && tarih === tarihRange[i][0]) {
+  //     if (islem[i][0] === "Alış") {
+  //       toplam -= miktar[i][0];
+  //     } else if (islem[i][0] === "Satış") {
+  //       toplam += miktar[i][0];
+  //     }
+  //   }
+  // }
+  // for (let i = 0; i < sube.length; i++) {
+  //   if (sube[i][0] === "Merkez") {
+  //     if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+  //       toplam -= miktar[i][0];
+  //     } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+  //       toplam += miktar[i][0];
+  //     }
+  //   }
+  // }
+  return toplam;
+}
+*/
+//coinIslemMerkezTl();
+
+function coinIslemMerkezDolar(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function coinIslemMerkezEuro(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function coinIslemMerkezSterlin(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+/*Lefkoşa */
+function coinIslemLefkosaTl(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function coinIslemLefkosaDolar(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function coinIslemLefkosaEuro(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function coinIslemLefkosaSterlin(sube, islem, miktar, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+        toplam -= miktar[i][0];
+      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+        toplam += miktar[i][0];
+      }
+    }
+  }
+  return toplam;
+}
+
+function toplamUSDTHesapla(islemRange, coinRange, islemDurumuRange) {
+  var toplamUsdt = 0;
+  for (let i = 0; i < islemDurumuRange.length; i++) {
+    if (islemDurumuRange[i][0] && islemRange[i][0] === "Alış") {
+      toplamUsdt += coinRange[i][0];
+    } else if (islemDurumuRange[i][0] && islemRange[i][0] === "Satış") {
+      toplamUsdt -= coinRange[i][0];
+    }
+  }
+  return toplamUsdt;
+}
+
+/* ------------------------------------------------- */
+/* Merkez */
+/* ------------------------------------------------- */
+
+function merkezGirdiCiktiTlHesapla(sube, islem, kur, miktar, islemDurumuRange) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "TL") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "TL") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function merkezGirdiCiktiDolarHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Dolar") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Dolar") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function merkezGirdiCiktiEuroHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Euro") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Euro") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function merkezGirdiCiktiSterlinHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Merkez") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Sterlin") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Sterlin") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+/* ------------------------------------------------- */
+/* Lefkoşa */
+/* ------------------------------------------------- */
+
+function lefkosaGirdiCiktiTlHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "TL") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "TL") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function lefkosaGirdiCiktiDolarHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Dolar") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Dolar") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function lefkosaGirdiCiktiEuroHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Euro") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Euro") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+function lefkosaGirdiCiktiSterlinHesapla(
+  sube,
+  islem,
+  kur,
+  miktar,
+  islemDurumuRange
+) {
+  var toplam = 0;
+  for (let i = 0; i < sube.length; i++) {
+    if (sube[i][0] === "Lefkoşa") {
+      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
+        if (kur[i][0] === "Sterlin") {
+          toplam += miktar[i][0];
+        }
+      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
+        if (kur[i][0] === "Sterlin") {
+          toplam -= miktar[i][0];
+        }
+      }
+    }
+  }
+  return toplam;
+}
+
+/*Kar*/
+function karHesapla(karRange, islemDurumu) {
+  var toplam = 0;
+  for (let i = 0; i < karRange.length; i++) {
+    if (islemDurumu[i][0]) {
+      toplam += karRange[i][0];
+    }
+  }
+  return toplam;
+}
+
+//var ss = SpreadsheetApp.getActiveSheet();
+//karHesapla(ss.getRange('Q6:Q').getValues(),ss.getRange(''))

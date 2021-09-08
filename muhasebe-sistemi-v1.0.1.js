@@ -2,14 +2,25 @@
 //Şube spesifik alış-satış sistemi (Placeholder system) //
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-/* Merkez */
-function coinIslemMerkezTl(sube, islem, miktar, islemDurumu) {
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+//Coin işlemleri //
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+function merkezTl(islemDurumu, sube, islem, miktar) {
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Merkez" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -17,13 +28,22 @@ function coinIslemMerkezTl(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemMerkezDolar(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function merkezDolar(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Merkez" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -31,13 +51,22 @@ function coinIslemMerkezDolar(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemMerkezEuro(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function merkezEuro(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Merkez" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -45,13 +74,22 @@ function coinIslemMerkezEuro(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemMerkezSterlin(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function merkezSterlin(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Merkez" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -59,14 +97,22 @@ function coinIslemMerkezSterlin(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-/*Lefkoşa */
-function coinIslemLefkosaTl(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function lefkosaTl(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Lefkoşa" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -74,13 +120,22 @@ function coinIslemLefkosaTl(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemLefkosaDolar(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function lefkosaDolar(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Lefkoşa" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -88,13 +143,22 @@ function coinIslemLefkosaDolar(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemLefkosaEuro(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function lefkosaEuro(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Lefkoşa" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -102,13 +166,22 @@ function coinIslemLefkosaEuro(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function coinIslemLefkosaSterlin(sube, islem, miktar, islemDurumu) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumu[i][0] && islem[i][0] === "Alış") {
+function lefkosaSterlin(islemDurumu,sube,islem,miktar){
+   var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for (let i = 0; i <= sonSatir; i++) {
+    if (
+      islemDurumu[i][0] &&
+      sube[i][0] === "Lefkoşa" &&
+      tarih === islemTarih[i][0]
+    ) {
+      if (islem[i][0] === "Alış") {
         toplam -= miktar[i][0];
-      } else if (islemDurumu[i][0] && islem[i][0] === "Satış") {
+      } else {
         toplam += miktar[i][0];
       }
     }
@@ -116,222 +189,214 @@ function coinIslemLefkosaSterlin(sube, islem, miktar, islemDurumu) {
   return toplam;
 }
 
-function toplamUSDTHesapla(islemRange, coinRange, islemDurumuRange) {
-  var toplamUsdt = 0;
-  for (let i = 0; i < islemDurumuRange.length; i++) {
-    if (islemDurumuRange[i][0] && islemRange[i][0] === "Alış") {
-      toplamUsdt += coinRange[i][0];
-    } else if (islemDurumuRange[i][0] && islemRange[i][0] === "Satış") {
-      toplamUsdt -= coinRange[i][0];
-    }
-  }
-  return toplamUsdt;
-}
+function toplamUSDT(islemDurumu,islem,miktar){
+  var toplam = 0 ;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("G2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("D9:D").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
 
-/* ------------------------------------------------- */
-/* Merkez */
-/* ------------------------------------------------- */
-
-function merkezGirdiCiktiTlHesapla(sube, islem, kur, miktar, islemDurumuRange) {
-  var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "TL") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "TL") {
-          toplam -= miktar[i][0];
-        }
+  for(let i = 0 ; i <= sonSatir;i++){
+    if(islemDurumu[i][0] && tarih === islemTarih[i][0]){
+      if(islem[i][0]==="Alış"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -=miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function merkezGirdiCiktiDolarHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function karHesapla(miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Dolar") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Dolar") {
-          toplam -= miktar[i][0];
-        }
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 9;
+
+  for(let i = 0 ; i <= sonSatir;i++){
+    toplam += miktar[i][0];
+  }
+  return toplam;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// Girdi/Çıktı Fonksiyonları //
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+function merkezTlHesapla(islemDurumu,sube,islem,kur,miktar){
+  var toplam = 0;
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Merkez" && kur[i][0]==="TL"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function merkezGirdiCiktiEuroHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function merkezDolarHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Euro") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Euro") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Merkez" && kur[i][0]==="Dolar"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function merkezGirdiCiktiSterlinHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function merkezEuroHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Merkez") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Sterlin") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Sterlin") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Merkez" && kur[i][0]==="Euro"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-/* ------------------------------------------------- */
-/* Lefkoşa */
-/* ------------------------------------------------- */
-
-function lefkosaGirdiCiktiTlHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function merkezSterlinHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "TL") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "TL") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Merkez" && kur[i][0]==="Sterlin"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function lefkosaGirdiCiktiDolarHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function lefkosaTlHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Dolar") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Dolar") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Lefkoşa" && kur[i][0]==="TL"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function lefkosaGirdiCiktiEuroHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function lefkosaDolarHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Euro") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Euro") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Lefkoşa" && kur[i][0]==="Dolar"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-function lefkosaGirdiCiktiSterlinHesapla(
-  sube,
-  islem,
-  kur,
-  miktar,
-  islemDurumuRange
-) {
+function lefkosaEuroHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < sube.length; i++) {
-    if (sube[i][0] === "Lefkoşa") {
-      if (islemDurumuRange[i][0] && islem[i][0] === "Girdi") {
-        if (kur[i][0] === "Sterlin") {
-          toplam += miktar[i][0];
-        }
-      } else if (islemDurumuRange[i][0] && islem[i][0] === "Çıktı") {
-        if (kur[i][0] === "Sterlin") {
-          toplam -= miktar[i][0];
-        }
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Lefkoşa" && kur[i][0]==="Euro"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
       }
     }
   }
   return toplam;
 }
 
-/*Kar*/
-function karHesapla(karRange, islemDurumu) {
+function lefkosaSterlinHesapla(islemDurumu,sube,islem,kur,miktar){
   var toplam = 0;
-  for (let i = 0; i < karRange.length; i++) {
-    if (islemDurumu[i][0]) {
-      toplam += karRange[i][0];
+  var tarih = SpreadsheetApp.getActiveSheet().getRange("H2").getDisplayValue();
+  var islemTarih = SpreadsheetApp.getActiveSheet().getRange("A6:A").getDisplayValues();
+  var ss = SpreadsheetApp.getActiveSheet();
+  var sonSatir = ss.getLastRow() - 6;
+
+  for(let i = 0 ; i <= sonSatir; i++){
+    if(islemDurumu[i][0] && tarih ===islemTarih[i][0] && sube[i][0] === "Lefkoşa" && kur[i][0]==="Sterlin"){
+      if(islem[i][0]==="Girdi"){
+        toplam += miktar[i][0];
+      }else{
+        toplam -= miktar[i][0];
+      }
     }
   }
   return toplam;
 }
 
-//var ss = SpreadsheetApp.getActiveSheet();
-//karHesapla(ss.getRange('Q6:Q').getValues(),ss.getRange(''))
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+// Kasa Kontrol //
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+function sayfaBelirle(){
+  var ay = SpreadsheetApp.getActiveSpreadsheet().getSheetName();
+  ay = ay.split(" ");
+  
+  return ay[0];
+}
+
+//NOT: sayıları tamamen doğru buluyoruz ancak dinamik bir şekilde sol tabloya nasıl yansıtacağız?
+
+function merkezIslemToplamTl(a1Notation){
+  var sayfa = sayfaBelirle();
+  var islemTarih = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sayfa).getRange("G2").getDisplayValue();
+  var tarih = SpreadsheetApp.getActiveSheet().getRange(a1Notation).getDisplayValue();
+
+  if(islemTarih === tarih){
+    return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sayfa).getRange("I3").getValue();
+  }
+}
+
+sayfaBelirle();
+
